@@ -1,0 +1,23 @@
+[Unit]
+Description=Shanghai Disneyland Portfolio API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=admin
+Group=admin
+WorkingDirectory=/opt/sh-disney
+Environment=NODE_ENV=production
+Environment=PORT=3000
+Environment=DB_PATH=/var/lib/sh-disney/shanghai_disneyland.db
+Environment=PYTHON_BIN=/opt/sh-disney/.venv/bin/python
+Environment=AUTO_COLLECT=true
+Environment=COLLECT_INTERVAL_SEC=300
+Environment=HISTORY_BACKFILL_DAYS=7
+ExecStart=/usr/bin/node /opt/sh-disney/server/src/index.js
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

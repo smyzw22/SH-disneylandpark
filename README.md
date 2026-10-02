@@ -6,7 +6,7 @@ An end-to-end portfolio prototype that combines a WeChat Mini Program, a live-da
 
 > **Portfolio status.** This is a personal engineering and ML prototype, not a continuously operated commercial service. The live collector can be deployed for a bounded observation campaign (for example, one month), while the repository remains fully reproducible in local/offline demo mode afterward.
 
-> **Live experiment.** A bounded real-observation campaign is scheduled for 2026-10-02 through 2026-11-02 on a small Alibaba Cloud instance in Hangzhou. The collector polls every five minutes and preserves each five-minute bucket rather than overwriting observations within the same hour. See the [campaign record](docs/LIVE_CAMPAIGN.md).
+> **Live experiment.** A bounded real-observation campaign is running from 2026-10-03 through 2026-11-02 on a small Alibaba Cloud instance in Hangzhou. The collector polls every five minutes and preserves each five-minute bucket rather than overwriting observations within the same hour. The read-only [health endpoint](http://47.99.129.17/health) and verification evidence are recorded in the [campaign record](docs/LIVE_CAMPAIGN.md).
 
 > **Data honesty.** Current wait times and operating status come from real ThemeParks.wiki observations when the backend is online. Forecasts are model estimates. The checked-in training dataset is synthetic data aligned to the collector schema, so the reported metrics demonstrate pipeline correctness rather than real-world predictive validity. Every fallback or stale state is labeled in the UI.
 
@@ -14,7 +14,7 @@ An end-to-end portfolio prototype that combines a WeChat Mini Program, a live-da
 
 Most crowd dashboards stop at a chart. This project explores the full product loop:
 
-- collect and preserve verifiable hourly observations;
+- collect and preserve verifiable five-minute observations;
 - separate observed facts from model estimates;
 - expose the data through a small API;
 - translate forecasts into date rankings and time-slot routes;
@@ -94,6 +94,7 @@ When the API or exported models are unavailable, the offline demo uses a determi
 ├── models/artifacts/   # Small reproducible model artifacts and metrics
 ├── scripts/            # Snapshot export utilities
 ├── docs/               # Architecture, cards, deployment, demo, archive
+├── deploy/alicloud/    # Reproducible Ubuntu/systemd/Nginx deployment
 ├── Dockerfile          # Optional bounded cloud deployment
 ├── docker-compose.yml
 ├── schema.sql
@@ -160,7 +161,7 @@ Before interpreting results, inspect `data/raw/dataset_manifest.txt`. Replacing 
 
 A one-month deployment is sufficient to demonstrate the complete lifecycle:
 
-1. deploy the Docker service with a persistent volume;
+1. deploy the Docker service or native Ubuntu/systemd recipe with persistent storage;
 2. collect and retain real observations in five-minute buckets;
 3. monitor freshness and failure states;
 4. record a 60–90 second phone demo;

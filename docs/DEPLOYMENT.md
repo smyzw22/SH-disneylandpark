@@ -8,9 +8,9 @@ For a graduate-school portfolio, a one-month deployment is enough if it produces
 
 ### Week 0 — launch
 
-- Deploy the Docker image to a small Linux VM/container service.
-- Attach a persistent volume for `/app/data`.
-- Configure HTTPS and the WeChat legal request domain.
+- Deploy with Docker or the checked-in Ubuntu/systemd recipe.
+- Keep SQLite outside the application checkout so upgrades do not erase observations.
+- Configure HTTPS and the WeChat legal request domain before any formal Mini Program release.
 - Store `THEMEPARKS_API_KEY` only as a server secret.
 - Validate `/health`, `/api/realtime`, `/api/history`, `/api/predict`, and `/api/suggest`.
 
@@ -40,6 +40,23 @@ The container stores SQLite data in the named volume `shanghai_disney_data` and 
 Set `PUBLIC_PORT=80` in the deployment `.env` when a portfolio VM should expose the read-only API through an existing HTTP firewall rule. The service itself continues to listen on port 3000 inside the container.
 
 The schema stores live observations in normalized five-minute buckets (`date`, `hour`, `minute`). Older hourly databases are migrated automatically with their existing rows assigned to minute `00`.
+
+## Alibaba Cloud Ubuntu launch
+
+The one-month portfolio campaign uses the native deployment because Docker Hub timed out from the selected Hangzhou instance. The checked-in recipe installs Node.js 22, creates a Python virtual environment, runs the API/collector under systemd, stores SQLite under `/var/lib/sh-disney`, and proxies port 80 through Nginx.
+
+```bash
+sudo APP_DIR=/opt/sh-disney sh deploy/alicloud/setup-native.sh
+```
+
+The service restarts automatically after a process failure or server reboot. Check it with:
+
+```bash
+systemctl status sh-disney
+curl http://127.0.0.1/health
+```
+
+The public campaign endpoint is deliberately HTTP-only. Do not configure it as a WeChat production request domain; use a controlled HTTPS domain for a formal release.
 
 ## Shutdown checklist
 
