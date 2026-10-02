@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS daily_total (
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
     date            TEXT    NOT NULL,           -- YYYY-MM-DD（Asia/Shanghai）
     hour            INTEGER NOT NULL,           -- 0-23
+    minute          INTEGER NOT NULL DEFAULT 0, -- 5-minute bucket: 0,5,...55
     crowd_index     REAL,                       -- 园区总客流指数 0-100（由排队时长推算）
     operating_rides INTEGER,                    -- 正在运营的游乐项目数
     avg_wait_min    REAL,                       -- 运营项目平均排队（分钟）
@@ -20,7 +21,7 @@ CREATE TABLE IF NOT EXISTS daily_total (
     is_school_vacation INTEGER NOT NULL DEFAULT 0, -- 1=寒暑假
     school_vacation_type TEXT,                  -- summer / winter / NULL
     scraped_at      TEXT    NOT NULL,           -- 抓取 UTC ISO8601
-    UNIQUE(date, hour)
+    UNIQUE(date, hour, minute)
 );
 
 CREATE INDEX IF NOT EXISTS idx_daily_total_date ON daily_total(date);
@@ -30,6 +31,7 @@ CREATE TABLE IF NOT EXISTS ride_queue (
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
     date            TEXT    NOT NULL,
     hour            INTEGER NOT NULL,
+    minute          INTEGER NOT NULL DEFAULT 0,
     ride_id         TEXT    NOT NULL,           -- ThemeParks entity UUID
     ride_name       TEXT    NOT NULL,
     entity_type     TEXT    NOT NULL,           -- ATTRACTION / SHOW 等
@@ -38,7 +40,7 @@ CREATE TABLE IF NOT EXISTS ride_queue (
     status          TEXT    NOT NULL,           -- OPERATING / CLOSED / DOWN 等
     last_updated    TEXT,                       -- API 侧最后更新时间
     scraped_at      TEXT    NOT NULL,
-    UNIQUE(date, hour, ride_id)
+    UNIQUE(date, hour, minute, ride_id)
 );
 
 CREATE INDEX IF NOT EXISTS idx_ride_queue_date_hour ON ride_queue(date, hour);

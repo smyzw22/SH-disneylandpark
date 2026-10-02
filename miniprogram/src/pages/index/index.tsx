@@ -10,7 +10,9 @@ import type { RealtimeData } from '../../services/types'
 import './index.scss'
 
 function formatCapturedAt(data: RealtimeData) {
-  if (!data.updated_at) return `${data.date} ${String(data.hour).padStart(2, '0')}:00`
+  if (!data.updated_at) {
+    return `${data.date} ${String(data.hour).padStart(2, '0')}:${String(data.minute ?? 0).padStart(2, '0')}`
+  }
   const d = new Date(data.updated_at)
   if (Number.isNaN(d.getTime())) return data.updated_at
   return d.toLocaleString('zh-CN', {

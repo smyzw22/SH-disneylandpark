@@ -1,10 +1,12 @@
 # Shanghai Disneyland Crowd Intelligence Mini Program
 
-[中文说明](README.zh-CN.md) · [Architecture](docs/ARCHITECTURE.md) · [Data Card](docs/DATA_CARD.md) · [Model Card](docs/MODEL_CARD.md) · [Demo Script](docs/DEMO_SCRIPT.md)
+[中文说明](README.zh-CN.md) · [Architecture](docs/ARCHITECTURE.md) · [Data Card](docs/DATA_CARD.md) · [Model Card](docs/MODEL_CARD.md) · [Live Campaign](docs/LIVE_CAMPAIGN.md) · [Demo Script](docs/DEMO_SCRIPT.md)
 
 An end-to-end portfolio prototype that combines a WeChat Mini Program, a live-data collector, an API service, and two forecasting pipelines to support Shanghai Disneyland visit planning and personal trip logging.
 
 > **Portfolio status.** This is a personal engineering and ML prototype, not a continuously operated commercial service. The live collector can be deployed for a bounded observation campaign (for example, one month), while the repository remains fully reproducible in local/offline demo mode afterward.
+
+> **Live experiment.** A bounded real-observation campaign is scheduled for 2026-10-02 through 2026-11-02 on a small Alibaba Cloud instance in Hangzhou. The collector polls every five minutes and preserves each five-minute bucket rather than overwriting observations within the same hour. See the [campaign record](docs/LIVE_CAMPAIGN.md).
 
 > **Data honesty.** Current wait times and operating status come from real ThemeParks.wiki observations when the backend is online. Forecasts are model estimates. The checked-in training dataset is synthetic data aligned to the collector schema, so the reported metrics demonstrate pipeline correctness rather than real-world predictive validity. Every fallback or stale state is labeled in the UI.
 
@@ -159,7 +161,7 @@ Before interpreting results, inspect `data/raw/dataset_manifest.txt`. Replacing 
 A one-month deployment is sufficient to demonstrate the complete lifecycle:
 
 1. deploy the Docker service with a persistent volume;
-2. collect real observations every five minutes;
+2. collect and retain real observations in five-minute buckets;
 3. monitor freshness and failure states;
 4. record a 60–90 second phone demo;
 5. export a provenance summary and archive the experiment;

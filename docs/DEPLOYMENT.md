@@ -37,6 +37,10 @@ docker compose up -d --build
 
 The container stores SQLite data in the named volume `shanghai_disney_data` and polls every 300 seconds by default.
 
+Set `PUBLIC_PORT=80` in the deployment `.env` when a portfolio VM should expose the read-only API through an existing HTTP firewall rule. The service itself continues to listen on port 3000 inside the container.
+
+The schema stores live observations in normalized five-minute buckets (`date`, `hour`, `minute`). Older hourly databases are migrated automatically with their existing rows assigned to minute `00`.
+
 ## Shutdown checklist
 
 - Save a private database backup.

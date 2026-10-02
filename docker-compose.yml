@@ -4,7 +4,7 @@ services:
     container_name: shanghai-disney-api
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "${PUBLIC_PORT:-3000}:3000"
     environment:
       # Set this in the server's deployment environment, never commit the key.
       THEMEPARKS_API_KEY: ${THEMEPARKS_API_KEY:-}
@@ -12,6 +12,12 @@ services:
       COLLECT_INTERVAL_SEC: ${COLLECT_INTERVAL_SEC:-300}
     volumes:
       - shanghai_disney_data:/app/data
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
 
 volumes:
   shanghai_disney_data:

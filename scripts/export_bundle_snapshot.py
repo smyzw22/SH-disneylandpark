@@ -26,7 +26,7 @@ def main() -> None:
     with sqlite3.connect(DB) as conn:
         conn.row_factory = sqlite3.Row
         latest = conn.execute(
-            "SELECT * FROM daily_total ORDER BY date DESC, hour DESC, scraped_at DESC LIMIT 1"
+            "SELECT * FROM daily_total ORDER BY date DESC, hour DESC, minute DESC, scraped_at DESC LIMIT 1"
         ).fetchone()
         if latest is None:
             raise SystemExit("数据库没有可导出的实采快照")
@@ -34,11 +34,11 @@ def main() -> None:
             """
             SELECT ride_id, ride_name, wait_time_min, status, last_updated
             FROM ride_queue
-            WHERE date = ? AND hour = ? AND entity_type = 'ATTRACTION'
+            WHERE date = ? AND hour = ? AND minute = ? AND entity_type = 'ATTRACTION'
             ORDER BY CASE WHEN wait_time_min IS NULL THEN 1 ELSE 0 END,
                      wait_time_min DESC, ride_name
             """,
-            (latest["date"], latest["hour"]),
+            (latest["date"], latest["hour"], latest["minute"]),
         ).fetchall()
         history = conn.execute(
             """
@@ -52,6 +52,7 @@ def main() -> None:
     payload["realtime"] = {
         "date": latest["date"],
         "hour": latest["hour"],
+        "minute": latest["minute"],
         "crowd_index": round(latest["crowd_index"], 1),
         "operating_rides": latest["operating_rides"],
         "avg_wait_min": round(latest["avg_wait_min"], 1),

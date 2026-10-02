@@ -73,6 +73,7 @@ CREATE TABLE IF NOT EXISTS daily_total (
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
     date            TEXT    NOT NULL,
     hour            INTEGER NOT NULL,
+    minute          INTEGER NOT NULL DEFAULT 0,
     crowd_index     REAL,
     operating_rides INTEGER,
     avg_wait_min    REAL,
@@ -87,7 +88,7 @@ CREATE TABLE IF NOT EXISTS daily_total (
     is_school_vacation INTEGER NOT NULL DEFAULT 0,
     school_vacation_type TEXT,
     scraped_at      TEXT    NOT NULL,
-    UNIQUE(date, hour)
+    UNIQUE(date, hour, minute)
 );
 
 CREATE INDEX IF NOT EXISTS idx_daily_total_date ON daily_total(date);
@@ -96,6 +97,7 @@ CREATE TABLE IF NOT EXISTS ride_queue (
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
     date            TEXT    NOT NULL,
     hour            INTEGER NOT NULL,
+    minute          INTEGER NOT NULL DEFAULT 0,
     ride_id         TEXT    NOT NULL,
     ride_name       TEXT    NOT NULL,
     entity_type     TEXT    NOT NULL,
@@ -104,7 +106,7 @@ CREATE TABLE IF NOT EXISTS ride_queue (
     status          TEXT    NOT NULL,
     last_updated    TEXT,
     scraped_at      TEXT    NOT NULL,
-    UNIQUE(date, hour, ride_id)
+    UNIQUE(date, hour, minute, ride_id)
 );
 
 CREATE INDEX IF NOT EXISTS idx_ride_queue_date_hour ON ride_queue(date, hour);
@@ -321,22 +323,64 @@ async def fetch_weather(
 
 async def init_db(db_path: Path) -> None:
     async with aiosqlite.connect(db_path) as db:
+        daily_columns = {
+            row[1]
+            for row in await (await db.execute("PRAGMA table_info(daily_total)")).fetchall()
+        }
+        if daily_columns and "minute" not in daily_columns:
+            log.info("迁移旧版小时级数据库到 5 分钟级结构")
+            await db.executescript(
+                """
+                ALTER TABLE daily_total RENAME TO daily_total_hourly_backup;
+                ALTER TABLE ride_queue RENAME TO ride_queue_hourly_backup;
+                DROP INDEX IF EXISTS idx_daily_total_date;
+                DROP INDEX IF EXISTS idx_ride_queue_date_hour;
+                DROP INDEX IF EXISTS idx_ride_queue_ride;
+                """
+            )
+            await db.executescript(SCHEMA_SQL)
+            await db.executescript(
+                """
+                INSERT INTO daily_total (
+                    date, hour, minute, crowd_index, operating_rides, avg_wait_min,
+                    max_wait_min, park_open_time, park_close_time, park_status,
+                    temperature_c, precipitation_mm, is_holiday, is_weekend,
+                    is_school_vacation, school_vacation_type, scraped_at
+                )
+                SELECT date, hour, 0, crowd_index, operating_rides, avg_wait_min,
+                       max_wait_min, park_open_time, park_close_time, park_status,
+                       temperature_c, precipitation_mm, is_holiday, is_weekend,
+                       is_school_vacation, school_vacation_type, scraped_at
+                FROM daily_total_hourly_backup;
+
+                INSERT INTO ride_queue (
+                    date, hour, minute, ride_id, ride_name, entity_type,
+                    wait_time_min, single_rider_min, status, last_updated, scraped_at
+                )
+                SELECT date, hour, 0, ride_id, ride_name, entity_type,
+                       wait_time_min, single_rider_min, status, last_updated, scraped_at
+                FROM ride_queue_hourly_backup;
+
+                DROP TABLE daily_total_hourly_backup;
+                DROP TABLE ride_queue_hourly_backup;
+                """
+            )
         await db.executescript(SCHEMA_SQL)
         await db.commit()
 
 
 async def upsert_daily_total(db: aiosqlite.Connection, row: dict[str, Any]) -> bool:
-    """同一小时保留最新一次真实观测；返回 True 表示完成写入。"""
+    """同一 5 分钟时间桶保留最新一次真实观测；返回 True 表示完成写入。"""
     cursor = await db.execute(
         """
         INSERT INTO daily_total (
-            date, hour, crowd_index, operating_rides, avg_wait_min, max_wait_min,
+            date, hour, minute, crowd_index, operating_rides, avg_wait_min, max_wait_min,
             park_open_time, park_close_time, park_status,
             temperature_c, precipitation_mm,
             is_holiday, is_weekend, is_school_vacation, school_vacation_type,
             scraped_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        ON CONFLICT(date, hour) DO UPDATE SET
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(date, hour, minute) DO UPDATE SET
             crowd_index = excluded.crowd_index,
             operating_rides = excluded.operating_rides,
             avg_wait_min = excluded.avg_wait_min,
@@ -355,6 +399,7 @@ async def upsert_daily_total(db: aiosqlite.Connection, row: dict[str, Any]) -> b
         (
             row["date"],
             row["hour"],
+            row.get("minute", 0),
             row["crowd_index"],
             row["operating_rides"],
             row["avg_wait_min"],
@@ -375,7 +420,7 @@ async def upsert_daily_total(db: aiosqlite.Connection, row: dict[str, Any]) -> b
 
 
 async def upsert_ride_queue(db: aiosqlite.Connection, rows: list[dict[str, Any]]) -> int:
-    """批量写入；同一项目同一小时保留最新一次真实观测。"""
+    """批量写入；同一项目同一 5 分钟时间桶保留最新一次真实观测。"""
     if not rows:
         return 0
 
@@ -384,10 +429,10 @@ async def upsert_ride_queue(db: aiosqlite.Connection, rows: list[dict[str, Any]]
         cursor = await db.execute(
             """
             INSERT INTO ride_queue (
-                date, hour, ride_id, ride_name, entity_type,
+                date, hour, minute, ride_id, ride_name, entity_type,
                 wait_time_min, single_rider_min, status, last_updated, scraped_at
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            ON CONFLICT(date, hour, ride_id) DO UPDATE SET
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(date, hour, minute, ride_id) DO UPDATE SET
                 ride_name = excluded.ride_name,
                 entity_type = excluded.entity_type,
                 wait_time_min = excluded.wait_time_min,
@@ -399,6 +444,7 @@ async def upsert_ride_queue(db: aiosqlite.Connection, rows: list[dict[str, Any]]
             (
                 row["date"],
                 row["hour"],
+                row.get("minute", 0),
                 row["ride_id"],
                 row["ride_name"],
                 row["entity_type"],
@@ -571,6 +617,7 @@ async def backfill_history(
                     {
                         "date": target.isoformat(),
                         "hour": hour,
+                        "minute": 0,
                         "crowd_index": crowd["crowd_index"],
                         "operating_rides": crowd["operating_rides"],
                         "avg_wait_min": crowd["avg_wait_min"],
@@ -592,6 +639,7 @@ async def backfill_history(
                         {
                             "date": target.isoformat(),
                             "hour": hour,
+                            "minute": 0,
                             "ride_id": item["id"],
                             "ride_name": item["name"],
                             "entity_type": item["entityType"],
@@ -625,6 +673,7 @@ async def scrape_once(db_path: Path, park_id: str = PARK_ID) -> ScrapeResult:
     now_local = datetime.now(TIMEZONE)
     today = now_local.date()
     hour = now_local.hour
+    minute = (now_local.minute // 5) * 5
     scraped_at = datetime.now(timezone.utc).isoformat()
 
     timeout = aiohttp.ClientTimeout(total=30)
@@ -675,6 +724,7 @@ async def scrape_once(db_path: Path, park_id: str = PARK_ID) -> ScrapeResult:
         daily_row = {
             "date": today.isoformat(),
             "hour": hour,
+            "minute": minute,
             "crowd_index": crowd["crowd_index"],
             "operating_rides": crowd["operating_rides"],
             "avg_wait_min": crowd["avg_wait_min"],
@@ -703,6 +753,7 @@ async def scrape_once(db_path: Path, park_id: str = PARK_ID) -> ScrapeResult:
                 {
                     "date": today.isoformat(),
                     "hour": hour,
+                    "minute": minute,
                     "ride_id": item.get("id", ""),
                     "ride_name": item.get("name", ""),
                     "entity_type": entity_type,
@@ -720,9 +771,10 @@ async def scrape_once(db_path: Path, park_id: str = PARK_ID) -> ScrapeResult:
         await db.commit()
 
     log.info(
-        "抓取完成 %s %02d:00 | 客流指数=%.1f | 项目=%d | daily新增=%s | ride新增=%d",
+        "抓取完成 %s %02d:%02d | 客流指数=%.1f | 项目=%d | daily写入=%s | ride写入=%d",
         today,
         hour,
+        minute,
         crowd["crowd_index"],
         len(ride_rows),
         daily_inserted,
