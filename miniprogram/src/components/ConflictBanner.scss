@@ -1,0 +1,21 @@
+.conflict {
+  margin-top: 20px;
+  padding: 22px 24px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(196, 92, 52, 0.12), rgba(232, 168, 56, 0.12));
+  border: 1px solid rgba(196, 92, 52, 0.2);
+}
+
+.conflict__title {
+  display: block;
+  font-size: 26px;
+  font-weight: 700;
+  color: #c45c34;
+  margin-bottom: 8px;
+}
+
+.conflict__text {
+  font-size: 24px;
+  color: #6b4a3a;
+  line-height: 1.5;
+}

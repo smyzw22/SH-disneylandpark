@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Python syntax checks
+        run: |
+          python -m py_compile shanghai_disneyland_scraper.py scripts/export_bundle_snapshot.py ml_pipeline/*.py
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: |
+            server/package-lock.json
+            miniprogram/package-lock.json
+
+      - name: Validate API source
+        working-directory: server
+        run: |
+          npm ci
+          node --check src/index.js
+          node --check src/app.js
+          node --check src/db.js
+          node --check src/collectorProcess.js
+          node --check src/pythonBridge.js
+
+      - name: Build WeChat Mini Program
+        working-directory: miniprogram
+        run: |
+          npm ci
+          npm run build:weapp

@@ -1,0 +1,128 @@
+/* 奶油底 + 雾蓝描边：略提对比，少一点昏暗 */
+page {
+  --ink: #243446;
+  --ink-soft: #4a5d70;
+  --cream: #fffaf3;
+  --cream-deep: #f4ebe0;
+  --sand: #fffdf9;
+  --peach: #ffefd9;
+  --blue: #3b6aa0;
+  --blue-deep: #2f4f78;
+  --sage: #4f7d58;
+  --amber: #c07a3a;
+  --amber-soft: #f0c89a;
+  --danger: #b35738;
+  --ok: #3f7a52;
+  background-color: var(--cream);
+  font-family: "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", sans-serif;
+  color: var(--ink);
+  box-sizing: border-box;
+}
+
+view,
+text {
+  box-sizing: border-box;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 24px 28px 48px;
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(circle, rgba(70, 95, 120, 0.16) 1px, transparent 1px),
+    linear-gradient(180deg, #fffaf3 0%, #f7f0e6 100%);
+  background-size: 18px 18px, 100% 100%;
+}
+
+.section {
+  margin-top: 28px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.section-title__main {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--blue-deep);
+  letter-spacing: 0.5px;
+}
+
+.section-title__sub {
+  font-size: 22px;
+  color: var(--ink-soft);
+}
+
+.card {
+  background: var(--sand);
+  border-radius: 20px;
+  padding: 26px;
+  border: 2px solid rgba(47, 79, 120, 0.55);
+  box-shadow: 0 6px 16px rgba(47, 79, 120, 0.06);
+}
+
+.card--soft {
+  background: var(--peach);
+  border-style: dashed;
+  border-color: var(--amber);
+}
+
+.muted {
+  color: var(--ink-soft);
+  font-size: 24px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 22px;
+  background: rgba(59, 106, 160, 0.14);
+  color: var(--blue-deep);
+}
+
+.chip--warn {
+  background: rgba(179, 87, 56, 0.14);
+  color: var(--danger);
+}
+
+.chip--ok {
+  background: rgba(79, 125, 88, 0.18);
+  color: var(--sage);
+}
+
+.chip--hot {
+  background: rgba(192, 122, 58, 0.2);
+  color: #8a5524;
+}
+
+.ok {
+  color: var(--ok);
+}
+
+.warn {
+  color: var(--danger);
+}
+
+.nut-button {
+  --nutui-button-border-radius: 14px !important;
+}
+
+.nut-button-primary {
+  --nutui-color-primary: #c07a3a !important;
+  background: linear-gradient(135deg, #c07a3a, #d49a5c) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+}
+
+.nut-button-default,
+.nut-button-outline {
+  border-color: rgba(47, 79, 120, 0.5) !important;
+  color: var(--blue-deep) !important;
+  background: var(--sand) !important;
+}

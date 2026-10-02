@@ -1,0 +1,678 @@
+{
+  "start_date": "2026-09-01",
+  "end_date": "2026-09-30",
+  "best_date": "2026-09-07",
+  "date_rankings": [
+    {
+      "rank": 1,
+      "date": "2026-09-07",
+      "predicted_crowd_index": 30.12,
+      "crowd_rank": 1,
+      "hot_ride_avg_wait_min": 13.27,
+      "wait_rank": 2,
+      "composite_score": 0.0953,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 2,
+      "date": "2026-09-01",
+      "predicted_crowd_index": 30.59,
+      "crowd_rank": 2,
+      "hot_ride_avg_wait_min": 13.31,
+      "wait_rank": 5,
+      "composite_score": 0.1115,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 3,
+      "date": "2026-09-14",
+      "predicted_crowd_index": 30.67,
+      "crowd_rank": 3,
+      "hot_ride_avg_wait_min": 13.29,
+      "wait_rank": 3,
+      "composite_score": 0.1107,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 4,
+      "date": "2026-09-15",
+      "predicted_crowd_index": 30.82,
+      "crowd_rank": 4,
+      "hot_ride_avg_wait_min": 13.33,
+      "wait_rank": 8,
+      "composite_score": 0.1194,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 5,
+      "date": "2026-09-08",
+      "predicted_crowd_index": 31.07,
+      "crowd_rank": 5,
+      "hot_ride_avg_wait_min": 13.31,
+      "wait_rank": 5,
+      "composite_score": 0.1226,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 6,
+      "date": "2026-09-02",
+      "predicted_crowd_index": 31.13,
+      "crowd_rank": 6,
+      "hot_ride_avg_wait_min": 13.35,
+      "wait_rank": 10,
+      "composite_score": 0.1292,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 7,
+      "date": "2026-09-22",
+      "predicted_crowd_index": 31.26,
+      "crowd_rank": 7,
+      "hot_ride_avg_wait_min": 13.34,
+      "wait_rank": 9,
+      "composite_score": 0.1309,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 8,
+      "date": "2026-09-23",
+      "predicted_crowd_index": 31.26,
+      "crowd_rank": 7,
+      "hot_ride_avg_wait_min": 13.37,
+      "wait_rank": 13,
+      "composite_score": 0.1349,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 9,
+      "date": "2026-09-09",
+      "predicted_crowd_index": 31.57,
+      "crowd_rank": 9,
+      "hot_ride_avg_wait_min": 13.36,
+      "wait_rank": 12,
+      "composite_score": 0.1408,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 10,
+      "date": "2026-09-16",
+      "predicted_crowd_index": 31.57,
+      "crowd_rank": 9,
+      "hot_ride_avg_wait_min": 13.37,
+      "wait_rank": 13,
+      "composite_score": 0.1421,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 11,
+      "date": "2026-09-28",
+      "predicted_crowd_index": 31.58,
+      "crowd_rank": 11,
+      "hot_ride_avg_wait_min": 13.31,
+      "wait_rank": 5,
+      "composite_score": 0.1345,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 12,
+      "date": "2026-09-04",
+      "predicted_crowd_index": 31.74,
+      "crowd_rank": 12,
+      "hot_ride_avg_wait_min": 13.4,
+      "wait_rank": 18,
+      "composite_score": 0.1499,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 13,
+      "date": "2026-09-24",
+      "predicted_crowd_index": 31.96,
+      "crowd_rank": 13,
+      "hot_ride_avg_wait_min": 13.41,
+      "wait_rank": 20,
+      "composite_score": 0.1563,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 14,
+      "date": "2026-09-10",
+      "predicted_crowd_index": 31.98,
+      "crowd_rank": 14,
+      "hot_ride_avg_wait_min": 13.38,
+      "wait_rank": 16,
+      "composite_score": 0.1529,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 15,
+      "date": "2026-09-11",
+      "predicted_crowd_index": 32.06,
+      "crowd_rank": 15,
+      "hot_ride_avg_wait_min": 13.42,
+      "wait_rank": 21,
+      "composite_score": 0.16,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 16,
+      "date": "2026-09-03",
+      "predicted_crowd_index": 32.11,
+      "crowd_rank": 16,
+      "hot_ride_avg_wait_min": 13.37,
+      "wait_rank": 13,
+      "composite_score": 0.1546,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 17,
+      "date": "2026-09-21",
+      "predicted_crowd_index": 32.32,
+      "crowd_rank": 17,
+      "hot_ride_avg_wait_min": 13.3,
+      "wait_rank": 4,
+      "composite_score": 0.1503,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 18,
+      "date": "2026-09-17",
+      "predicted_crowd_index": 32.35,
+      "crowd_rank": 18,
+      "hot_ride_avg_wait_min": 13.4,
+      "wait_rank": 18,
+      "composite_score": 0.1641,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 19,
+      "date": "2026-09-29",
+      "predicted_crowd_index": 32.37,
+      "crowd_rank": 19,
+      "hot_ride_avg_wait_min": 13.35,
+      "wait_rank": 10,
+      "composite_score": 0.158,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 20,
+      "date": "2026-09-18",
+      "predicted_crowd_index": 33.16,
+      "crowd_rank": 20,
+      "hot_ride_avg_wait_min": 13.42,
+      "wait_rank": 21,
+      "composite_score": 0.1855,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 21,
+      "date": "2026-09-30",
+      "predicted_crowd_index": 33.55,
+      "crowd_rank": 21,
+      "hot_ride_avg_wait_min": 13.39,
+      "wait_rank": 17,
+      "composite_score": 0.1906,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 22,
+      "date": "2026-09-20",
+      "predicted_crowd_index": 36.89,
+      "crowd_rank": 22,
+      "hot_ride_avg_wait_min": 15.22,
+      "wait_rank": 30,
+      "composite_score": 0.5072,
+      "is_holiday": 0,
+      "is_weekend": 1,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 23,
+      "date": "2026-09-12",
+      "predicted_crowd_index": 54.72,
+      "crowd_rank": 23,
+      "hot_ride_avg_wait_min": 14.3,
+      "wait_rank": 26,
+      "composite_score": 0.8009,
+      "is_holiday": 1,
+      "is_weekend": 1,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 24,
+      "date": "2026-09-25",
+      "predicted_crowd_index": 54.76,
+      "crowd_rank": 24,
+      "hot_ride_avg_wait_min": 12.54,
+      "wait_rank": 1,
+      "composite_score": 0.572,
+      "is_holiday": 1,
+      "is_weekend": 0,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 25,
+      "date": "2026-09-26",
+      "predicted_crowd_index": 55.06,
+      "crowd_rank": 25,
+      "hot_ride_avg_wait_min": 14.32,
+      "wait_rank": 29,
+      "composite_score": 0.8114,
+      "is_holiday": 1,
+      "is_weekend": 1,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 26,
+      "date": "2026-09-06",
+      "predicted_crowd_index": 55.91,
+      "crowd_rank": 26,
+      "hot_ride_avg_wait_min": 14.28,
+      "wait_rank": 23,
+      "composite_score": 0.8259,
+      "is_holiday": 1,
+      "is_weekend": 1,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 27,
+      "date": "2026-09-13",
+      "predicted_crowd_index": 56.1,
+      "crowd_rank": 27,
+      "hot_ride_avg_wait_min": 14.28,
+      "wait_rank": 23,
+      "composite_score": 0.8303,
+      "is_holiday": 1,
+      "is_weekend": 1,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 28,
+      "date": "2026-09-19",
+      "predicted_crowd_index": 56.71,
+      "crowd_rank": 28,
+      "hot_ride_avg_wait_min": 14.31,
+      "wait_rank": 27,
+      "composite_score": 0.8484,
+      "is_holiday": 1,
+      "is_weekend": 1,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 29,
+      "date": "2026-09-27",
+      "predicted_crowd_index": 58.08,
+      "crowd_rank": 29,
+      "hot_ride_avg_wait_min": 14.31,
+      "wait_rank": 27,
+      "composite_score": 0.8802,
+      "is_holiday": 1,
+      "is_weekend": 1,
+      "conflict": false,
+      "conflict_note": null
+    },
+    {
+      "rank": 30,
+      "date": "2026-09-05",
+      "predicted_crowd_index": 58.12,
+      "crowd_rank": 30,
+      "hot_ride_avg_wait_min": 14.28,
+      "wait_rank": 23,
+      "composite_score": 0.8772,
+      "is_holiday": 1,
+      "is_weekend": 1,
+      "conflict": false,
+      "conflict_note": null
+    }
+  ],
+  "daily_plans": {
+    "2026-09-07": {
+      "date": "2026-09-07",
+      "rank": 1,
+      "predicted_crowd_index": 30.12,
+      "crowd_rank": 1,
+      "hot_ride_avg_wait_min": 13.27,
+      "wait_rank": 2,
+      "composite_score": 0.0953,
+      "conflict": false,
+      "conflict_note": null,
+      "time_slot_advice": [
+        {
+          "slot": "早场 09:00-11:59",
+          "peak_level": "平峰",
+          "hot_avg_wait_min": 13.5,
+          "cold_avg_wait_min": 8.0,
+          "suggestion": "可穿插中等热度项目；若热门已刷完，可补刷遗漏项目。"
+        },
+        {
+          "slot": "午峰 12:00-14:59",
+          "peak_level": "高峰",
+          "hot_avg_wait_min": 16.3,
+          "cold_avg_wait_min": 10.9,
+          "suggestion": "避峰时段：热门排队较长，建议改玩巴斯光年、小飞象等冷门，或看演出休息。"
+        },
+        {
+          "slot": "下午 15:00-16:59",
+          "peak_level": "高峰",
+          "hot_avg_wait_min": 15.9,
+          "cold_avg_wait_min": 10.6,
+          "suggestion": "避峰时段：热门排队较长，建议改玩巴斯光年、小飞象等冷门，或看演出休息。"
+        },
+        {
+          "slot": "傍晚 17:00-21:00",
+          "peak_level": "低峰",
+          "hot_avg_wait_min": 10.3,
+          "cold_avg_wait_min": 6.8,
+          "suggestion": "冲热门项目最佳窗口，优先游玩创极速光轮、翱翔·飞越地平线等。"
+        }
+      ],
+      "play_route": [
+        {
+          "time": "2026-09-07 09:00",
+          "hour": 9,
+          "ride_name": "七个小矮人矿山车",
+          "tier": "hot",
+          "predicted_wait_min": 10.3,
+          "reason": "早场低峰，优先冲热门"
+        },
+        {
+          "time": "2026-09-07 09:00",
+          "hour": 9,
+          "ride_name": "漫威英雄总部：钢铁侠飞行器",
+          "tier": "hot",
+          "predicted_wait_min": 10.4,
+          "reason": "早场低峰，优先冲热门"
+        },
+        {
+          "time": "2026-09-07 10:00",
+          "hour": 10,
+          "ride_name": "七个小矮人矿山车",
+          "tier": "hot",
+          "predicted_wait_min": 13.2,
+          "reason": "早场低峰，优先冲热门"
+        },
+        {
+          "time": "2026-09-07 10:00",
+          "hour": 10,
+          "ride_name": "漫威英雄总部：钢铁侠飞行器",
+          "tier": "hot",
+          "predicted_wait_min": 13.4,
+          "reason": "早场低峰，优先冲热门"
+        },
+        {
+          "time": "2026-09-07 12:00",
+          "hour": 12,
+          "ride_name": "小飞象",
+          "tier": "cold",
+          "predicted_wait_min": 9.8,
+          "reason": "午峰避热门，冷门分流"
+        },
+        {
+          "time": "2026-09-07 13:00",
+          "hour": 13,
+          "ride_name": "小飞象",
+          "tier": "cold",
+          "predicted_wait_min": 10.2,
+          "reason": "午峰避热门，冷门分流"
+        },
+        {
+          "time": "2026-09-07 14:00",
+          "hour": 14,
+          "ride_name": "小飞象",
+          "tier": "cold",
+          "predicted_wait_min": 10.3,
+          "reason": "午峰避热门，冷门分流"
+        },
+        {
+          "time": "2026-09-07 15:00",
+          "hour": 15,
+          "ride_name": "七个小矮人矿山车",
+          "tier": "hot",
+          "predicted_wait_min": 15.0,
+          "reason": "下午窗口补刷热门"
+        },
+        {
+          "time": "2026-09-07 16:00",
+          "hour": 16,
+          "ride_name": "七个小矮人矿山车",
+          "tier": "hot",
+          "predicted_wait_min": 14.5,
+          "reason": "下午窗口补刷热门"
+        },
+        {
+          "time": "2026-09-07 17:00",
+          "hour": 17,
+          "ride_name": "小飞象",
+          "tier": "cold",
+          "predicted_wait_min": 8.7,
+          "reason": "傍晚收尾，优先短排队"
+        },
+        {
+          "time": "2026-09-07 18:00",
+          "hour": 18,
+          "ride_name": "小飞象",
+          "tier": "cold",
+          "predicted_wait_min": 7.3,
+          "reason": "傍晚收尾，优先短排队"
+        },
+        {
+          "time": "2026-09-07 19:00",
+          "hour": 19,
+          "ride_name": "小飞象",
+          "tier": "cold",
+          "predicted_wait_min": 5.8,
+          "reason": "傍晚收尾，优先短排队"
+        }
+      ]
+    },
+    "2026-09-01": {
+      "date": "2026-09-01",
+      "rank": 2,
+      "predicted_crowd_index": 30.59,
+      "crowd_rank": 2,
+      "hot_ride_avg_wait_min": 13.31,
+      "wait_rank": 5,
+      "composite_score": 0.1115,
+      "conflict": false,
+      "conflict_note": null,
+      "time_slot_advice": [
+        {
+          "slot": "早场 09:00-11:59",
+          "peak_level": "平峰",
+          "hot_avg_wait_min": 13.5,
+          "cold_avg_wait_min": 8.0,
+          "suggestion": "可穿插中等热度项目；若热门已刷完，可补刷遗漏项目。"
+        },
+        {
+          "slot": "午峰 12:00-14:59",
+          "peak_level": "高峰",
+          "hot_avg_wait_min": 16.3,
+          "cold_avg_wait_min": 10.8,
+          "suggestion": "避峰时段：热门排队较长，建议改玩巴斯光年、小飞象等冷门，或看演出休息。"
+        },
+        {
+          "slot": "下午 15:00-16:59",
+          "peak_level": "高峰",
+          "hot_avg_wait_min": 16.0,
+          "cold_avg_wait_min": 10.5,
+          "suggestion": "避峰时段：热门排队较长，建议改玩巴斯光年、小飞象等冷门，或看演出休息。"
+        },
+        {
+          "slot": "傍晚 17:00-21:00",
+          "peak_level": "低峰",
+          "hot_avg_wait_min": 10.3,
+          "cold_avg_wait_min": 6.7,
+          "suggestion": "冲热门项目最佳窗口，优先游玩创极速光轮、翱翔·飞越地平线等。"
+        }
+      ],
+      "play_route": [
+        {
+          "time": "2026-09-01 09:00",
+          "hour": 9,
+          "ride_name": "七个小矮人矿山车",
+          "tier": "hot",
+          "predicted_wait_min": 10.3,
+          "reason": "早场低峰，优先冲热门"
+        },
+        {
+          "time": "2026-09-01 09:00",
+          "hour": 9,
+          "ride_name": "漫威英雄总部：钢铁侠飞行器",
+          "tier": "hot",
+          "predicted_wait_min": 10.4,
+          "reason": "早场低峰，优先冲热门"
+        },
+        {
+          "time": "2026-09-01 10:00",
+          "hour": 10,
+          "ride_name": "七个小矮人矿山车",
+          "tier": "hot",
+          "predicted_wait_min": 13.3,
+          "reason": "早场低峰，优先冲热门"
+        },
+        {
+          "time": "2026-09-01 10:00",
+          "hour": 10,
+          "ride_name": "漫威英雄总部：钢铁侠飞行器",
+          "tier": "hot",
+          "predicted_wait_min": 13.4,
+          "reason": "早场低峰，优先冲热门"
+        },
+        {
+          "time": "2026-09-01 12:00",
+          "hour": 12,
+          "ride_name": "小飞象",
+          "tier": "cold",
+          "predicted_wait_min": 9.7,
+          "reason": "午峰避热门，冷门分流"
+        },
+        {
+          "time": "2026-09-01 13:00",
+          "hour": 13,
+          "ride_name": "小飞象",
+          "tier": "cold",
+          "predicted_wait_min": 10.1,
+          "reason": "午峰避热门，冷门分流"
+        },
+        {
+          "time": "2026-09-01 14:00",
+          "hour": 14,
+          "ride_name": "小飞象",
+          "tier": "cold",
+          "predicted_wait_min": 10.2,
+          "reason": "午峰避热门，冷门分流"
+        },
+        {
+          "time": "2026-09-01 15:00",
+          "hour": 15,
+          "ride_name": "七个小矮人矿山车",
+          "tier": "hot",
+          "predicted_wait_min": 15.0,
+          "reason": "下午窗口补刷热门"
+        },
+        {
+          "time": "2026-09-01 16:00",
+          "hour": 16,
+          "ride_name": "七个小矮人矿山车",
+          "tier": "hot",
+          "predicted_wait_min": 14.5,
+          "reason": "下午窗口补刷热门"
+        },
+        {
+          "time": "2026-09-01 17:00",
+          "hour": 17,
+          "ride_name": "小飞象",
+          "tier": "cold",
+          "predicted_wait_min": 8.6,
+          "reason": "傍晚收尾，优先短排队"
+        },
+        {
+          "time": "2026-09-01 18:00",
+          "hour": 18,
+          "ride_name": "小飞象",
+          "tier": "cold",
+          "predicted_wait_min": 7.2,
+          "reason": "傍晚收尾，优先短排队"
+        },
+        {
+          "time": "2026-09-01 19:00",
+          "hour": 19,
+          "ride_name": "小飞象",
+          "tier": "cold",
+          "predicted_wait_min": 5.7,
+          "reason": "傍晚收尾，优先短排队"
+        }
+      ]
+    }
+  },
+  "summary": "区间 2026-09-01 ~ 2026-09-30 共 30 天；最优日期 2026-09-07（人流排名 #1，热门均排 13.3 分钟）。"
+}

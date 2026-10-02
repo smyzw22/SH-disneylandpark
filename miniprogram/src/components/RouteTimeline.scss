@@ -1,0 +1,121 @@
+.timeline {
+  padding-top: 8px;
+}
+
+.timeline__item {
+  display: flex;
+  gap: 20px;
+}
+
+.timeline__rail {
+  width: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeline__dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.timeline__dot--hot {
+  background: #e8a838;
+}
+
+.timeline__dot--cold {
+  background: #228c6e;
+}
+
+.timeline__dot--medium {
+  background: #7a8b99;
+}
+
+.timeline__line {
+  width: 2px;
+  flex: 1;
+  min-height: 40px;
+  background: rgba(11, 61, 92, 0.12);
+  margin: 6px 0;
+}
+
+.timeline__body {
+  flex: 1;
+  padding-bottom: 28px;
+}
+
+.timeline__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.timeline__time {
+  font-size: 26px;
+  font-weight: 700;
+  color: #0b3d5c;
+}
+
+.timeline__ride {
+  display: block;
+  margin-top: 8px;
+  font-size: 30px;
+  font-weight: 600;
+  color: #1a2b3c;
+}
+
+.timeline__wait {
+  display: block;
+  margin-top: 6px;
+  font-size: 24px;
+  color: #0b3d5c;
+}
+
+.timeline__reason {
+  display: block;
+  margin-top: 6px;
+  font-size: 22px;
+  color: #7a8b99;
+  line-height: 1.4;
+}
+
+.timeline__alts {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(11, 61, 92, 0.04);
+}
+
+.timeline__alts-title {
+  display: block;
+  font-size: 20px;
+  color: #7a8b99;
+  margin-bottom: 8px;
+}
+
+.timeline__alt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.timeline__alt-name {
+  flex: 1;
+  font-size: 24px;
+  color: #1a2b3c;
+}
+
+.timeline__alt-wait {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0b3d5c;
+}
+
+.chip--mid {
+  background: rgba(122, 139, 153, 0.15);
+  color: #5a6b78;
+}

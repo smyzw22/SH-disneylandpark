@@ -1,0 +1,13 @@
+.git
+.venv
+node_modules
+server/node_modules
+miniprogram/node_modules
+miniprogram/dist
+miniprogram/.swc
+__pycache__
+**/__pycache__
+*.pyc
+*.db
+.env
+.DS_Store

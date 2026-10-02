@@ -1,0 +1,88 @@
+.recommend-page .hero {
+  margin-bottom: 12px;
+}
+
+.recommend-page .hero__brand {
+  display: block;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: #7a8b99;
+  font-weight: 600;
+}
+
+.recommend-page .hero__title {
+  display: block;
+  margin-top: 8px;
+  font-size: 48px;
+  font-weight: 800;
+  color: #0b3d5c;
+}
+
+.recommend-page .hero__meta {
+  display: block;
+  margin-top: 10px;
+  font-size: 24px;
+  color: #7a8b99;
+}
+
+.rank-card {
+  margin-bottom: 18px;
+}
+
+.rank-card__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.rank-card__date {
+  font-size: 30px;
+  font-weight: 700;
+  color: #0b3d5c;
+}
+
+.rank-card__sub {
+  display: block;
+  margin-top: 8px;
+  font-size: 22px;
+  color: #7a8b99;
+}
+
+.rank-card__badge {
+  font-size: 40px;
+  font-weight: 800;
+  color: #e8a838;
+}
+
+.rank-card__dual {
+  display: flex;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.rank-card__num {
+  display: block;
+  margin-top: 6px;
+  font-size: 36px;
+  font-weight: 700;
+  color: #0b3d5c;
+}
+
+.rank-card__actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.fav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(11, 61, 92, 0.06);
+  font-size: 28px;
+}
+
+.fav-row:last-child {
+  border-bottom: none;
+}

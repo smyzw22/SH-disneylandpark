@@ -1,0 +1,88 @@
+.gauge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gauge__arc {
+  position: relative;
+  width: 320px;
+  height: 180px;
+  overflow: hidden;
+}
+
+.gauge__track,
+.gauge__fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 18px solid transparent;
+  box-sizing: border-box;
+}
+
+.gauge__track {
+  border-top-color: rgba(11, 61, 92, 0.12);
+  border-left-color: rgba(11, 61, 92, 0.12);
+  transform: rotate(-45deg);
+}
+
+.gauge__fill {
+  border-top-color: #0b3d5c;
+  border-left-color: #e8a838;
+  transform-origin: center center;
+  transition: transform 0.4s ease;
+}
+
+.gauge__center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gauge__value {
+  font-size: 64px;
+  font-weight: 700;
+  color: #0b3d5c;
+  line-height: 1.1;
+}
+
+.gauge__unit {
+  font-size: 22px;
+  color: #7a8b99;
+  margin-top: 4px;
+}
+
+.gauge__level {
+  margin-top: 10px;
+  font-size: 24px;
+  padding: 4px 18px;
+  border-radius: 999px;
+}
+
+.gauge__level--ok {
+  background: rgba(34, 140, 110, 0.12);
+  color: #228c6e;
+}
+
+.gauge__level--mid {
+  background: rgba(232, 168, 56, 0.18);
+  color: #b07a12;
+}
+
+.gauge__level--hot {
+  background: rgba(196, 92, 52, 0.12);
+  color: #c45c34;
+}
+
+.gauge__sub {
+  margin-top: 12px;
+  font-size: 22px;
+  color: #7a8b99;
+}

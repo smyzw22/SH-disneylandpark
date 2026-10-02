@@ -1,0 +1,119 @@
+{
+  "logic": {
+    "y1": "当日园区整体人流量指数（XGBoost，未来30天，用于推荐低人流日期）",
+    "y2": "单个游乐项目分时排队时长（LSTM，与 y1 独立）",
+    "note": "人流量低≠排队短：节假日人流上升时，热门项目可能因分流/预约导致排队增幅弱于人流；两套预测结果分开落盘，禁止用 y1 直接替代 y2。"
+  },
+  "features": {
+    "time": [
+      "month",
+      "week",
+      "weekday",
+      "is_holiday",
+      "is_school_vacation",
+      "hour/slot"
+    ],
+    "weather": [
+      "temperature_c",
+      "precipitation_mm",
+      "wind_speed_kmh"
+    ]
+  },
+  "model_a_metrics": {
+    "MAE": 4.301481644285371,
+    "MSE": 28.153325203870345,
+    "RMSE": 5.305970712684942,
+    "sklearn_MAE": 4.301481644285371,
+    "sklearn_MSE": 28.153325203870345
+  },
+  "model_b_metrics": {
+    "MAE": 3.734150942106413,
+    "MSE": 21.523735629029087,
+    "RMSE": 4.6393680204343655
+  },
+  "model_a_artifact": "models/artifacts/model_a_xgboost_crowd.json",
+  "model_b_artifact": "models/artifacts/model_b_lstm_wait.pt",
+  "pred_a_30d": "data/processed/pred_a_crowd_next_30d.csv",
+  "pred_a_low_crowd": "data/processed/pred_a_low_crowd_recommend.csv",
+  "pred_b_ride": "创极速光轮",
+  "pred_b_file": "data/processed/pred_b_wait_创极速光轮.csv",
+  "low_crowd_top5": [
+    {
+      "date": "2026-09-14",
+      "predicted_crowd_index": 30.36,
+      "crowd_rank_asc": 1,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "temperature_c": 28.07,
+      "precipitation_mm": 4.25
+    },
+    {
+      "date": "2026-09-07",
+      "predicted_crowd_index": 30.59,
+      "crowd_rank_asc": 2,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "temperature_c": 28.07,
+      "precipitation_mm": 4.25
+    },
+    {
+      "date": "2026-09-15",
+      "predicted_crowd_index": 30.83,
+      "crowd_rank_asc": 3,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "temperature_c": 28.07,
+      "precipitation_mm": 4.25
+    },
+    {
+      "date": "2026-09-22",
+      "predicted_crowd_index": 31.02,
+      "crowd_rank_asc": 4,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "temperature_c": 28.07,
+      "precipitation_mm": 4.25
+    },
+    {
+      "date": "2026-09-16",
+      "predicted_crowd_index": 31.15,
+      "crowd_rank_asc": 5,
+      "is_holiday": 0,
+      "is_weekend": 0,
+      "temperature_c": 28.07,
+      "precipitation_mm": 4.25
+    }
+  ],
+  "wait_sample": [
+    {
+      "date": "2026-08-31",
+      "hour": 9,
+      "ride_name": "创极速光轮",
+      "predicted_wait_min": 12.4
+    },
+    {
+      "date": "2026-08-31",
+      "hour": 10,
+      "ride_name": "创极速光轮",
+      "predicted_wait_min": 16.5
+    },
+    {
+      "date": "2026-08-31",
+      "hour": 11,
+      "ride_name": "创极速光轮",
+      "predicted_wait_min": 18.2
+    },
+    {
+      "date": "2026-08-31",
+      "hour": 12,
+      "ride_name": "创极速光轮",
+      "predicted_wait_min": 18.7
+    },
+    {
+      "date": "2026-08-31",
+      "hour": 13,
+      "ride_name": "创极速光轮",
+      "predicted_wait_min": 18.9
+    }
+  ]
+}

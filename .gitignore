@@ -1,0 +1,32 @@
+.DS_Store
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.log
+.env
+.env.*
+!.env.example
+
+# Runtime observations and local state
+*.db
+*.sqlite
+*.sqlite3
+
+# JavaScript dependencies and builds
+node_modules/
+server/node_modules/
+miniprogram/node_modules/
+miniprogram/dist/
+miniprogram/.swc/
+dist/
+.temp/
+.rn_temp/
+
+# WeChat developer-local configuration and release bundles
+**/project.private.config.json
+wechat_upload/
+
+# Editors
+.idea/
+.vscode/

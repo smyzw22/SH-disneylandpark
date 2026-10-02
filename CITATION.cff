@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+title: "Shanghai Disneyland Crowd Intelligence Mini Program"
+message: "If this portfolio prototype informs your work, please cite the repository."
+type: software
+authors:
+  - name: smyzw22
+repository-code: "https://github.com/smyzw22/SH-disneylandpark"
+date-released: 2026-10-02

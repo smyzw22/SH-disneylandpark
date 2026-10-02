@@ -1,0 +1,162 @@
+.route-page .hero {
+  margin-bottom: 16px;
+}
+
+.route-page .hero__brand {
+  display: block;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: #7a8b99;
+  font-weight: 600;
+}
+
+.route-page .hero__title {
+  display: block;
+  margin-top: 8px;
+  font-size: 48px;
+  font-weight: 800;
+  color: #0b3d5c;
+}
+
+.route-page .hero__meta {
+  display: block;
+  margin-top: 10px;
+  font-size: 24px;
+  color: #7a8b99;
+}
+
+.summary__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.summary__nav {
+  display: flex;
+  gap: 10px;
+}
+
+.quick {
+  margin-top: 20px;
+}
+
+.quick__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.quick__chip {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(11, 61, 92, 0.06);
+  color: #0b3d5c;
+  font-size: 22px;
+}
+
+.quick__chip--on {
+  background: #0b3d5c;
+  color: #fff;
+}
+
+.summary__date {
+  display: block;
+  margin-top: 6px;
+  font-size: 36px;
+  font-weight: 700;
+  color: #0b3d5c;
+}
+
+.summary__metrics {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.share-btn {
+  margin-top: 22px !important;
+}
+
+.metric {
+  flex: 1;
+  background: rgba(11, 61, 92, 0.04);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.metric__label {
+  display: block;
+  font-size: 20px;
+  color: #7a8b99;
+}
+
+.metric__value {
+  display: block;
+  margin-top: 8px;
+  font-size: 34px;
+  font-weight: 700;
+  color: #0b3d5c;
+}
+
+.slot {
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(11, 61, 92, 0.06);
+}
+
+.slot:last-child {
+  border-bottom: none;
+}
+
+.slot__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slot__name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0b3d5c;
+}
+
+.slot__wait {
+  display: block;
+  margin-top: 8px;
+  font-size: 24px;
+  color: #1a2b3c;
+}
+
+.slot__tip {
+  display: block;
+  margin-top: 6px;
+  font-size: 22px;
+  color: #7a8b99;
+  line-height: 1.4;
+}
+.route-source {
+  margin-bottom: 18px;
+  padding: 20px 22px;
+  border: 2px solid rgba(47, 79, 120, 0.4);
+  border-radius: 16px;
+  background: rgba(255, 239, 217, 0.72);
+}
+
+.route-source__title,
+.route-source__body {
+  display: block;
+}
+
+.route-source__title {
+  color: var(--blue-deep);
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.route-source__body {
+  margin-top: 6px;
+  color: var(--ink-soft);
+  font-size: 22px;
+  line-height: 1.55;
+}

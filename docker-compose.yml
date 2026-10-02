@@ -1,0 +1,17 @@
+services:
+  shanghai-disney-api:
+    build: .
+    container_name: shanghai-disney-api
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      # Set this in the server's deployment environment, never commit the key.
+      THEMEPARKS_API_KEY: ${THEMEPARKS_API_KEY:-}
+      HISTORY_BACKFILL_DAYS: ${HISTORY_BACKFILL_DAYS:-7}
+      COLLECT_INTERVAL_SEC: ${COLLECT_INTERVAL_SEC:-300}
+    volumes:
+      - shanghai_disney_data:/app/data
+
+volumes:
+  shanghai_disney_data:
