@@ -316,12 +316,6 @@
   text-align: center;
 }
 
-.celebrate__tip {
-  margin-top: 16px;
-  font-size: 24px;
-  color: #f3e4d4;
-}
-
 .egg__spark {
   display: block;
   font-size: 40px;
@@ -360,13 +354,6 @@
   font-size: 24px;
   color: #c07a3a;
   font-weight: 700;
-}
-
-.egg__skip {
-  display: block;
-  margin-top: 18px;
-  font-size: 24px;
-  color: #4a5d70;
 }
 
 .day-head {
@@ -554,6 +541,15 @@
   text-align: center;
 }
 
+.viz-pill--tap {
+  min-height: 112px;
+}
+
+.viz-pill--pressed {
+  background: #f3dbc4;
+  transform: scale(0.98);
+}
+
 .viz-pill__n {
   display: block;
   font-size: 34px;
@@ -566,6 +562,49 @@
   margin-top: 4px;
   font-size: 20px;
   color: var(--ink-soft);
+}
+
+.detail-row--story {
+  align-items: flex-start;
+}
+
+.detail-row__story {
+  display: -webkit-box;
+  margin-top: 8px;
+  max-width: 380px;
+  overflow: hidden;
+  color: var(--ink-soft);
+  font-size: 22px;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.photo-story {
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(47, 79, 120, 0.18);
+}
+
+.photo-story__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.photo-wall {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.photo-wall__img {
+  width: calc(33.333% - 7px);
+  height: 150px;
+  border-radius: 14px;
+  border: 1px solid rgba(47, 79, 120, 0.2);
+  background: var(--cream);
 }
 
 .cat-card {

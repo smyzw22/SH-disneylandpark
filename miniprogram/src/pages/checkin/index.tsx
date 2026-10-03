@@ -22,10 +22,19 @@ import type { AttractionSpot, CheckInRecord, CheckInType } from '../../services/
 import './index.scss'
 
 type Tab = 'today' | 'history' | 'summary' | 'map'
-type SummaryDetail = 'days' | 'attraction' | 'show' | 'character'
+type SummaryDetail = 'days' | 'attraction' | 'show' | 'character' | 'notes' | 'photos'
 type MapFilter = 'attraction' | 'show' | 'character' | 'all'
 
-const MOODS = ['开心爆棚', '腿已经不是我的了', '下次还敢', '今天很幸运', '排队也很浪漫'] as const
+const MOODS = [
+  '开心爆棚',
+  '今天很幸运',
+  '平静满足',
+  '有点疲惫',
+  '腿已经不是我的了',
+  '排队排麻了',
+  '有点失望',
+  '下次还敢',
+] as const
 const MAP_CATEGORY_COUNTS = {
   show: ATTRACTIONS.filter((item) => item.category === 'show').length,
   character: ATTRACTIONS.filter((item) => item.category === 'character').length,
@@ -131,6 +140,16 @@ export default function CheckinPage() {
   const cells = useMemo(() => monthMatrix(calYear, calMonth), [calYear, calMonth])
   const photoCount = useMemo(() => checkins.reduce((s, c) => s + (c.photos?.length || 0), 0), [checkins])
   const noteCount = useMemo(() => checkins.filter((c) => c.note?.trim()).length, [checkins])
+  const noteEntries = useMemo(
+    () => checkins.filter((c) => c.note?.trim()).sort((a, b) => b.visitDate.localeCompare(a.visitDate)),
+    [checkins]
+  )
+  const photoEntries = useMemo(
+    () => checkins
+      .filter((c) => c.photos?.length)
+      .sort((a, b) => b.visitDate.localeCompare(a.visitDate)),
+    [checkins]
+  )
   const visitDates = useMemo(
     () => [...new Set(checkins.map((c) => c.visitDate))].sort((a, b) => b.localeCompare(a)),
     [checkins]
@@ -271,7 +290,7 @@ export default function CheckinPage() {
     })
     setShowAdd(false)
     setSelected(null)
-    // 写了日记或塞了照片 → 弹出「私人游记本」彩蛋页
+    // 写了文字或塞了照片 → 用统一的「私人游记本」完成态反馈
     afterSave(next, { egg: !!(body || photos.length) })
   }
 
@@ -540,17 +559,29 @@ export default function CheckinPage() {
           </View>
 
           <View className='viz-row'>
-            <View className='viz-pill'>
+            <View
+              className='viz-pill viz-pill--tap'
+              hoverClass='viz-pill--pressed'
+              onClick={() => setSummaryDetail('photos')}
+            >
               <Text className='viz-pill__n'>{photoCount}</Text>
-              <Text className='viz-pill__l'>张微相册</Text>
+              <Text className='viz-pill__l'>张微相册 ›</Text>
             </View>
-            <View className='viz-pill'>
+            <View
+              className='viz-pill viz-pill--tap'
+              hoverClass='viz-pill--pressed'
+              onClick={() => setSummaryDetail('notes')}
+            >
               <Text className='viz-pill__n'>{noteCount}</Text>
-              <Text className='viz-pill__l'>段微日记</Text>
+              <Text className='viz-pill__l'>段微日记 ›</Text>
             </View>
-            <View className='viz-pill'>
+            <View
+              className='viz-pill viz-pill--tap'
+              hoverClass='viz-pill--pressed'
+              onClick={() => Taro.pageScrollTo({ selector: '#badge-wall', duration: 260 })}
+            >
               <Text className='viz-pill__n'>{badges.filter((b) => b.unlocked).length}</Text>
-              <Text className='viz-pill__l'>枚徽章</Text>
+              <Text className='viz-pill__l'>枚徽章 ↓</Text>
             </View>
           </View>
 
@@ -567,7 +598,7 @@ export default function CheckinPage() {
             <Text className='cat-card__sub'>遇见 {groupedSummary.character?.length || 0} 位 · 共记录 {stats.byCat.character} 次 ›</Text>
           </View>
 
-          <View className='section-title'>
+          <View className='section-title' id='badge-wall'>
             <Text className='section-title__main'>小小徽章墙</Text>
           </View>
           <View className='badge-grid'>
@@ -677,9 +708,11 @@ export default function CheckinPage() {
                       attraction: '设施打卡清单',
                       show: '看过的演出',
                       character: '遇见的角色',
+                      notes: '我的微日记',
+                      photos: '我的微相册',
                     }[summaryDetail]}
                   </Text>
-                  <Text className='muted'>每一项都来自你的本机打卡记录</Text>
+                  <Text className='muted'>每一项都只来自你的本机游记记录</Text>
                 </View>
                 <View className='detail-head__close' onClick={() => setSummaryDetail(null)}>关闭</View>
               </View>
@@ -707,6 +740,54 @@ export default function CheckinPage() {
                   })
                 ) : (
                   <View className='detail-empty'>还没有入园日。先去「今日」盖下第一枚章吧。</View>
+                )
+              ) : summaryDetail === 'notes' ? (
+                noteEntries.length ? (
+                  noteEntries.map((item) => (
+                    <View
+                      className='detail-row detail-row--story'
+                      key={item.id}
+                      onClick={() => {
+                        setSelectedDate(item.visitDate)
+                        const d = new Date(`${item.visitDate}T12:00:00`)
+                        setCalYear(d.getFullYear())
+                        setCalMonth(d.getMonth())
+                        setSummaryDetail(null)
+                        setTab('history')
+                      }}
+                    >
+                      <View>
+                        <Text className='detail-row__name'>{item.attractionName}</Text>
+                        <Text className='detail-row__story'>{item.note}</Text>
+                      </View>
+                      <Text className='detail-row__meta'>{item.visitDate} ›</Text>
+                    </View>
+                  ))
+                ) : (
+                  <View className='detail-empty'>还没有文字游记。下一站，留一句给未来的自己吧。</View>
+                )
+              ) : summaryDetail === 'photos' ? (
+                photoEntries.length ? (
+                  photoEntries.map((item) => (
+                    <View className='photo-story' key={item.id}>
+                      <View className='photo-story__head'>
+                        <Text className='detail-row__name'>{item.attractionName}</Text>
+                        <Text className='detail-row__meta'>{item.visitDate}</Text>
+                      </View>
+                      <View className='photo-wall'>
+                        {(item.photos || []).map((photo, index) => (
+                          <Image
+                            key={`${item.id}-${index}`}
+                            src={photo}
+                            className='photo-wall__img'
+                            mode='aspectFill'
+                          />
+                        ))}
+                      </View>
+                    </View>
+                  ))
+                ) : (
+                  <View className='detail-empty'>微相册还是空的。下一次打卡时，可以从相册或相机添一张。</View>
                 )
               ) : (groupedSummary[summaryDetail] || []).length ? (
                 (groupedSummary[summaryDetail] || []).map((item) => (
@@ -789,7 +870,7 @@ export default function CheckinPage() {
                 {photos.length ? '再塞几张进相册' : '打开微相册'}
               </View>
               <TextArea
-                placeholder='写一句微日记，给以后的自己留个彩蛋'
+                placeholder='写一句游记，给以后的自己留个彩蛋'
                 value={note}
                 onChange={(v) => setNote(String(v))}
                 maxLength={200}
@@ -864,7 +945,6 @@ export default function CheckinPage() {
           <View className='celebrate__burst' />
           <Text className='celebrate__text'>记下啦！</Text>
           {newBadge ? <Text className='celebrate__sub'>徽章亮了 {newBadge}</Text> : null}
-          <Text className='celebrate__tip'>点一下继续</Text>
         </View>
       ) : null}
 
@@ -893,16 +973,7 @@ export default function CheckinPage() {
                 toast('我记住了，你可以放心退出咯~')
               }}
             >
-              好，收进口袋
-            </View>
-            <View
-              className='egg__skip'
-              onClick={() => {
-                setShowEgg(false)
-                setNewBadge(null)
-              }}
-            >
-              先看看别的
+              收进口袋
             </View>
           </View>
         </View>

@@ -33,7 +33,7 @@ The implementation contains roughly 9,000 lines across Python, Node.js, TypeScri
 | **Route** | Time-slot advice and an ordered ride plan for a selected date |
 | **My Park** | Ticket + in-park expense ledger and observed-data archive |
 
-Screenshots and the short demo video will live in [`docs/assets`](docs/assets/README.md). The recommended recording flow is documented in [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md).
+The repository includes a short [WeChat DevTools walkthrough](docs/assets/shanghai-disney-demo.mp4), assembled from verified runtime screens. The repeatable recording flow is documented in [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md).
 
 ## System architecture
 

@@ -1,5 +1,7 @@
 import path from 'path'
 
+const apiBase = process.env.TARO_APP_API_BASE || 'http://127.0.0.1:3000'
+
 const config = {
   projectName: 'shanghai-disney-crowd',
   date: '2026-8-31',
@@ -18,7 +20,9 @@ const config = {
   sourceRoot: 'src',
   outputRoot: 'dist',
   plugins: ['@tarojs/plugin-html'],
-  defineConstants: {},
+  defineConstants: {
+    'process.env.TARO_APP_API_BASE': JSON.stringify(apiBase),
+  },
   copy: {
     patterns: [],
     options: {},

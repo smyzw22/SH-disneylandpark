@@ -1,12 +1,5 @@
 # Demo Assets
 
-Add the final portfolio media here before publishing the application package:
+- [`shanghai-disney-demo.mp4`](shanghai-disney-demo.mp4) — 24-second walkthrough assembled from verified WeChat DevTools runtime screens. It covers live data, forecast, check-in, atlas detail, route, and the expense ledger.
 
-- `today-live.png`
-- `forecast-ranking.png`
-- `route-timeline.png`
-- `checkin-atlas.png`
-- `my-park-ledger.png`
-- `architecture.png` (optional exported Mermaid diagram)
-
-Do not add the advisory chat screenshots used during project planning. Crop or blur AppIDs, developer identities, QR codes, local paths, and personal check-in/ledger data.
+The frames intentionally use an empty local profile so no personal notes, photos, account details, API keys, or precise visit history are exposed. Advisory chat screenshots and developer-console screenshots are not portfolio assets.

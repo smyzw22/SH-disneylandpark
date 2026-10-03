@@ -195,11 +195,13 @@
 }
 
 .mode-tabs__item {
+  flex: 1;
   padding: 10px 20px;
   border-radius: 999px;
   background: rgba(11, 61, 92, 0.06);
   color: #0b3d5c;
   font-size: 22px;
+  text-align: center;
 }
 
 .mode-tabs__item--on {
@@ -207,14 +209,9 @@
   color: #fff;
 }
 
-.rank-tip {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 12px;
-  font-size: 24px;
-  color: #5a6b78;
-  line-height: 1.5;
+.metric__value--ranks {
+  font-size: 28px;
+  white-space: nowrap;
 }
 
 .day-card__fav {

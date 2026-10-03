@@ -23,7 +23,6 @@ type RankMode = 'date' | 'crowd' | 'wait'
 export default function ForecastPage() {
   const [list, setList] = useState<CrowdDay[]>([])
   const [mode, setMode] = useState<RankMode>('date')
-  const [showFullRank, setShowFullRank] = useState(false)
   const [favorites, setFavorites] = useState<string[]>([])
   const [syncing, setSyncing] = useState(false)
 
@@ -156,57 +155,10 @@ export default function ForecastPage() {
 
       <View className='section'>
         <View className='section-title'>
-          <Text className='section-title__main'>人流排名</Text>
-          <Button
-            size='small'
-            type='primary'
-            onClick={() => {
-              setMode('crowd')
-              setShowFullRank(true)
-            }}
-          >
-            看30天总排名
-          </Button>
-        </View>
-
-        <View className='mode-tabs'>
-          {(
-            [
-              ['date', '按日期'],
-              ['crowd', '人流排名'],
-              ['wait', '排队排名'],
-            ] as const
-          ).map(([k, label]) => (
-            <Text
-              key={k}
-              className={`mode-tabs__item ${mode === k ? 'mode-tabs__item--on' : ''}`}
-              onClick={() => {
-                setMode(k)
-                if (k !== 'date') setShowFullRank(true)
-              }}
-            >
-              {label}
-            </Text>
-          ))}
-        </View>
-
-        {showFullRank && mode !== 'date' ? (
-          <View className='rank-tip card'>
-            <Button
-              size='mini'
-              fill='outline'
-              onClick={() => {
-                setShowFullRank(false)
-                setMode('date')
-              }}
-            >
-              回到日期列表
-            </Button>
+          <View>
+            <Text className='section-title__main'>逐日预测与排名</Text>
+            <Text className='section-title__sub'>同一份明细，换一种顺序看</Text>
           </View>
-        ) : null}
-
-        <View className='section-title' style={{ marginTop: '20px' }}>
-          <Text className='section-title__main'>逐日明细</Text>
           <Button
             size='small'
             type='primary'
@@ -216,6 +168,24 @@ export default function ForecastPage() {
           >
             同步模型
           </Button>
+        </View>
+
+        <View className='mode-tabs'>
+          {(
+            [
+              ['date', '日期顺序'],
+              ['crowd', '人流从低到高'],
+              ['wait', '排队从短到长'],
+            ] as const
+          ).map(([k, label]) => (
+            <Text
+              key={k}
+              className={`mode-tabs__item ${mode === k ? 'mode-tabs__item--on' : ''}`}
+              onClick={() => setMode(k)}
+            >
+              {label}
+            </Text>
+          ))}
         </View>
 
         {displayList.map((d) => {
@@ -262,8 +232,10 @@ export default function ForecastPage() {
                     </Text>
                   </View>
                   <View className='metric'>
-                    <Text className='metric__label'>人流排名</Text>
-                    <Text className='metric__value'>#{d.crowd_rank}</Text>
+                    <Text className='metric__label'>人流 / 排队排名</Text>
+                    <Text className='metric__value metric__value--ranks'>
+                      #{d.crowd_rank} / #{d.wait_rank}
+                    </Text>
                   </View>
                 </View>
                 <ConflictBanner note={d.conflict_note} />

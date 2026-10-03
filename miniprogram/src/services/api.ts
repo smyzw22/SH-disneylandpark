@@ -3,9 +3,7 @@ import type { CrowdDay, DayPlan, HistoryPoint, RealtimeData } from './types'
 
 /** 线上构建需配置已加入微信 request 合法域名的 HTTPS 地址。 */
 export const API_BASE =
-  typeof process !== 'undefined' && process.env?.TARO_APP_API_BASE
-    ? process.env.TARO_APP_API_BASE
-    : 'http://127.0.0.1:3000'
+  process.env.TARO_APP_API_BASE || 'http://127.0.0.1:3000'
 
 interface ApiEnvelope {
   ok: boolean
