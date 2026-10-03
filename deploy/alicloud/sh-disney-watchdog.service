@@ -1,0 +1,8 @@
+[Unit]
+Description=Shanghai Disneyland collector/API health watchdog
+After=network-online.target sh-disney.service nginx.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/sh-disney-healthcheck

@@ -8,6 +8,7 @@
 - Collector cadence: every 300 seconds.
 - Storage cadence: one timestamped observation per 5-minute bucket.
 - Runtime: Node.js 22 + Python virtual environment under systemd, fronted by Nginx.
+- Recovery: `Restart=always` with no start-rate lockout, plus an independent one-minute health watchdog.
 - Runtime storage: private SQLite database at `/var/lib/sh-disney/shanghai_disneyland.db`.
 
 ## Public status

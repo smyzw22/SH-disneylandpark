@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -u
+
+HEALTH_URL=${HEALTH_URL:-http://127.0.0.1/health}
+
+if curl --fail --silent --show-error --max-time 15 "$HEALTH_URL" >/dev/null; then
+  exit 0
+fi
+
+logger -t sh-disney-watchdog "health check failed; restarting sh-disney.service"
+systemctl restart sh-disney.service
+sleep 10
+
+if curl --fail --silent --show-error --max-time 15 "$HEALTH_URL" >/dev/null; then
+  exit 0
+fi
+
+logger -t sh-disney-watchdog "health still failing; restarting nginx.service"
+systemctl restart nginx.service
+exit 1

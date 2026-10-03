@@ -43,7 +43,7 @@ The schema stores live observations in normalized five-minute buckets (`date`, `
 
 ## Alibaba Cloud Ubuntu launch
 
-The one-month portfolio campaign uses the native deployment because Docker Hub timed out from the selected Hangzhou instance. The checked-in recipe installs Node.js 22, creates a Python virtual environment, runs the API/collector under systemd, stores SQLite under `/var/lib/sh-disney`, and proxies port 80 through Nginx.
+The one-month portfolio campaign uses the native deployment because Docker Hub timed out from the selected Hangzhou instance. The checked-in recipe installs Node.js 22, creates a Python virtual environment, runs the API/collector under systemd, stores SQLite under `/var/lib/sh-disney`, and proxies port 80 through Nginx. A persistent one-minute systemd watchdog checks the local health endpoint and restarts the API (then Nginx if needed); the main service also has an unlimited restart window so a burst of failures cannot leave it permanently stopped.
 
 ```bash
 sudo APP_DIR=/opt/sh-disney sh deploy/alicloud/setup-native.sh
@@ -54,6 +54,8 @@ The service restarts automatically after a process failure or server reboot. Che
 ```bash
 systemctl status sh-disney
 curl http://127.0.0.1/health
+systemctl status sh-disney sh-disney-watchdog.timer --no-pager
+systemctl list-timers sh-disney-watchdog.timer --no-pager
 ```
 
 The public campaign endpoint is deliberately HTTP-only. Do not configure it as a WeChat production request domain; use a controlled HTTPS domain for a formal release.

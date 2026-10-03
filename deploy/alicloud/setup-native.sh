@@ -31,6 +31,9 @@ python3 -m venv .venv
 install -d -o "$APP_USER" -g "$APP_USER" -m 0755 "$DATA_DIR"
 
 install -m 0644 deploy/alicloud/sh-disney.service /etc/systemd/system/sh-disney.service
+install -m 0755 deploy/alicloud/sh-disney-healthcheck /usr/local/sbin/sh-disney-healthcheck
+install -m 0644 deploy/alicloud/sh-disney-watchdog.service /etc/systemd/system/sh-disney-watchdog.service
+install -m 0644 deploy/alicloud/sh-disney-watchdog.timer /etc/systemd/system/sh-disney-watchdog.timer
 install -m 0644 deploy/alicloud/nginx.conf /etc/nginx/sites-available/sh-disney
 rm -f /etc/nginx/sites-enabled/default
 ln -sf /etc/nginx/sites-available/sh-disney /etc/nginx/sites-enabled/sh-disney
@@ -38,7 +41,9 @@ ln -sf /etc/nginx/sites-available/sh-disney /etc/nginx/sites-enabled/sh-disney
 nginx -t
 systemctl daemon-reload
 systemctl enable --now sh-disney
+systemctl enable --now sh-disney-watchdog.timer
 systemctl enable nginx
 systemctl restart nginx
 
 curl --retry 18 --retry-delay 5 --retry-connrefused -fsS http://127.0.0.1/health
+systemctl start sh-disney-watchdog.service

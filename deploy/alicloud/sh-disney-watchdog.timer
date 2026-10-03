@@ -1,0 +1,12 @@
+[Unit]
+Description=Run Shanghai Disneyland service health check every minute
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=1min
+AccuracySec=10s
+Persistent=true
+Unit=sh-disney-watchdog.service
+
+[Install]
+WantedBy=timers.target
